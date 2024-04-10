@@ -1,7 +1,8 @@
 import { useState } from 'react';
-/* import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg' */
-import './App.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCode } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import './App.css';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from "@chatscope/chat-ui-kit-react";
 
@@ -102,7 +103,24 @@ const systemMessage = {
             </ChatContainer>
           </MainContainer>
         </div>
-        </div>
+        <footer className="socials">
+            <div className="icon-container" data-title="Visit my GitHub">
+                <a href="https://github.com/LucianoLawson/robo-ai" target="_blank" rel="noopener noreferrer" className="github-link">
+                    <FontAwesomeIcon icon={faGithub} size="2x" />
+                </a>
+            </div>
+            <div className="icon-container" data-title="Visit my LinkedIn">
+                <a href="https://www.linkedin.com/in/luciano-lawson/" target="_blank" rel="noopener noreferrer" className="linkedin-link">
+                    <FontAwesomeIcon icon={faLinkedin} size="2x" />
+                </a>
+            </div>
+            <div className="icon-container" data-title="Visit my Portfolio">
+                <a href="https://lucianolawson.vercel.app/" target="_blank" rel="noopener noreferrer" className="website-link">
+                    <FontAwesomeIcon icon={faCode} size="2x" />
+                </a>
+            </div>
+        </footer>
+    </div>
   )
 }
 
