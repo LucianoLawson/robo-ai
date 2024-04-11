@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import './App.css';
+import './main.scss';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
-import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from "@chatscope/chat-ui-kit-react";
+import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator, Avatar, ConversationHeader } from "@chatscope/chat-ui-kit-react";
+
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -12,18 +13,17 @@ function App() {
   const [typing, setTyping] = useState(false);
   const [messages, setMessages] = useState([
     {
-      message: "Hello, I am Robo!",
+      message: "Hello, I'm Robo!",
       sender: "Robo",
       direction: "incoming"
     }
   ]) // []
-
 const handleSend = async (message) => {
   const newMessage = {
     message,
     sender: "user",
     direction: "outgoing"
-  }
+  };
 
   const newMessages = [...messages, newMessage]; //old messages plus new messages
   
@@ -45,7 +45,7 @@ async function processMessagetoRobo(chatMessages) {
     } else {
       role = "user"
     }
-     return { role: role, content: messageObject.message }
+    return { role: role, content: messageObject.message }
   });
 
 //role: "user" -> message from user, "assistant" -> response from robot
@@ -90,16 +90,23 @@ const systemMessage = {
       <div className="App">
         <div style={{ position: "relative", height: "800px", width: "700px"}}>
           <MainContainer>
-            <ChatContainer>
-              <MessageList
-              scrollBehavior='smooth'
-              typingIndicator={typing ? <TypingIndicator content="Robo is typing" /> :null}
-              >
-                {messages.map((message, i) => {
-                  return <Message key={i} model={message} />
-                })}
+            <ChatContainer className="my-chat-container">
+              <ConversationHeader>
+                <Avatar
+                  name="Robo"
+                  size="md"
+                  src="../public/robo-icon.svg"
+                  status="available"
+                />
+              </ConversationHeader>
+              <MessageList typingIndicator={typing ? <TypingIndicator content="Robo is typing" /> : null}>
+        {messages.map((message, i) => (
+          <Message key={i} model={message} />
+        ))}
               </MessageList>
-              <MessageInput placeholder='Type message here' onSend={handleSend} />
+              <MessageInput
+        placeholder="Type message here"
+        onSend={handleSend}/>
             </ChatContainer>
           </MainContainer>
         </div>

@@ -1,3 +1,7 @@
+body {
+  background-color: rgb(18, 18, 18);
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -47,14 +51,43 @@
 }
 
 .linkedin-link:hover {
-  color: #0077b5; /* Change to desired hover color for LinkedIn */
+  color: #0077b5; 
 }
 
 .website-link:hover {
-  color: #ff4500; /* Change to desired hover color for your personal website */
+  color: #ff4500; 
 }
 
-/* Ensuring FontAwesome icons inherit color from the parent anchor tag */
 .fa-brands, .fa-solid {
   color: inherit;
 }
+
+.cs-message-input__content-editor {
+  padding: 5px;
+  text-align: left;
+}
+.cs-message-input__content-editor-wrapper {
+  padding: 5px;
+}
+.svg-inline--fa, .fa-paperclip, .fa-w-14 {
+  padding: auto;
+}
+.cs-message__content {
+  background-color: lightgray !important;
+  font-weight: 500 !important;
+  padding: 0.5em 1em !important;
+}
+
+.cs-conversation-header,
+.cs-message-input__content-editor-wrapper,
+.cs-message-input__content-editor {
+  background-color:dimgrey !important;
+}
+
+.scrollbar-container,
+.cs-message-list__scroll-wrapper,
+.ps,
+.cs-message-input {
+  background-color: rgb(46, 46, 46) !important;
+}
+

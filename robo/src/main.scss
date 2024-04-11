@@ -1,0 +1,70 @@
+@charset "utf-8";
+@import "./variables";
+@import "./helpers/mixins";
+@import "./helpers/functions";
+@import "@chatscope/chat-ui-kit-styles/themes/default/main.scss";
+
+
+body {
+  background-color: rgb(38, 38, 38);
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+  .socials {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 15px;
+  }
+  
+  .icon-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Tooltip styles */
+  .icon-container::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 1;
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+  
+  .icon-container:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Color change on hover for each link */
+  .github-link:hover {
+    color: #333;
+  }
+  
+  .linkedin-link:hover {
+    color: #0077b5; 
+  }
+  
+  .website-link:hover {
+    color: #ff4500; 
+  }
+  
+  .fa-brands, .fa-solid {
+    color: inherit;
+  }
