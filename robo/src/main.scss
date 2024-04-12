@@ -9,6 +9,10 @@ body {
   background-color: rgb(38, 38, 38);
 }
 
+.luciano {
+  text-align: center;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -68,3 +72,8 @@ body {
   .fa-brands, .fa-solid {
     color: inherit;
   }
+.App-title {
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+}
