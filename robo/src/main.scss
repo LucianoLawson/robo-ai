@@ -7,11 +7,33 @@
 
 body {
   background-color: rgb(38, 38, 38);
+  background-image: url(/robot-white.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
 }
-
+.cs-conversation-header1 {
+  text-align: center !important;
+/*   text-decoration: underline; */
+}
 .luciano {
   text-align: center;
 }
+
+/* .cs-chat-container {
+  width: 350px;
+  height: 300px !important;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1000;
+}  */
 
 #root {
   max-width: 1280px;
@@ -55,7 +77,7 @@ body {
     opacity: 1;
     visibility: visible;
   }
-  
+
   /* Color change on hover for each link */
   .github-link:hover {
     color: #333;
@@ -76,4 +98,58 @@ body {
   text-align: center;
   padding: 10px;
   margin: 10px;
+}
+/* footer {
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  transform: translateY(-100px);
+} */
+
+.scrollbar-container.cs-message-list__scroll-wrapper.ps,
+.cs-conversation-header
+{
+  bottom: 20px;
+  right: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.cs-message-input {
+  border: 1px solid #ddd;
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.cs-main-container {
+  border: 1px solid #ddd;
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+}
+
+.cs-message-list__typing-indicator-container {
+  color: black!important;
+}
+.cs-message.cs-message--incoming, .cs-message.cs-message--outgoing {
+  background-color: rgb(255, 255, 255)!important;
+  overflow: hidden;
+}
+.cs-button.cs-button--attachment {
+  visibility: hidden;
+}
+.chat-container {
+  width: 700px; 
+  height: 600px;
+  transition: height 0.3s ease-in-out;
+}
+
+.cs-conversation-header {
+  width: 100%;
+}
+.cs-button.cs-button--attachment1 {
+  cursor: pointer;
+  
 }

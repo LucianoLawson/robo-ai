@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCode } from '@fortawesome/free-solid-svg-icons';
+import { faCode, faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import './main.scss';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator, Avatar, ConversationHeader } from "@chatscope/chat-ui-kit-react";
-import Spinkit from './spinkit';
+import Animation from './three';
+import './variables.scss';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -13,6 +14,7 @@ function App() {
   const [typing, setTyping] = useState(false);
   const [messages, setMessages] = useState([{ message: "Hello, I'm Robo!", sender: "Robo", direction: "incoming" }]);
   const [isLoading, setIsLoading] = useState(false);
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -31,7 +33,22 @@ function App() {
     await processMessageToRobo([...messages, newMessage]);
     setTyping(false);
   };
-
+/*   const handleFileInputClick = () => {
+    if(fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  }; */
+  
+  const handleFileSelected = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      console.log('File selected:', file.name);
+      // Process the file upload here. Depending on your application, you might want to
+      // send it to a server or handle it in some way.
+    }
+  };
+  
+  
   async function processMessageToRobo(chatMessages) {
     let apiMessages = chatMessages.map(messageObject => ({
       role: messageObject.sender === "Robo" ? "assistant" : "user",
@@ -63,13 +80,25 @@ function App() {
       }]);
     });
   }
-
+/*   const fileInput = (
+    <>
+      <input
+        id="file-upload"
+        type="file"
+        ref={fileInputRef}
+        style={{ display: 'none' }}
+        onChange={handleFileSelected}
+      />
+      <label htmlFor="file-upload" className="cs-button cs-button--attachment">
+        <FontAwesomeIcon icon={faPaperclip} />
+        <span>Upload File</span>
+      </label>
+    </>
+  ); */
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Welcome to Robo Chat!</h1>
-      </header>
-      <div style={{ position: "relative", height: "800px", width: "700px" }}>
+      <div className="chat-container">
+        <h5>Welcome to Robo Chat!</h5>
         <MainContainer>
           <ChatContainer>
             <ConversationHeader>
@@ -82,17 +111,29 @@ function App() {
             </MessageList>
             <MessageInput placeholder="Type message here" onSend={handleSend} />
           </ChatContainer>
+          {/* Label and hidden input for file upload */}
+          <label htmlFor="file-upload" className="cs-button cs-button--attachment1">
+            <FontAwesomeIcon icon={faPaperclip} />
+            <span>Upload File</span>
+          </label>
+          <input
+            id="file-upload"
+            type="file"
+            ref={fileInputRef}
+            style={{ display: 'none' }}
+            onChange={handleFileSelected}
+            />
         </MainContainer>
-      </div>
-      {isLoading && <Spinkit />}
-      <div className="luciano">
-          <h5>Made with &hearts; by Luciano Lawson</h5>
+        {isLoading && <Animation />}
+        <div className="luciano">
+          <h5>&copy; 2024 Made with &hearts; by Luciano Lawson</h5>
         </div>
-      <footer className="socials">
-        <a href="https://github.com/LucianoLawson/robo-ai" className="social-link"><FontAwesomeIcon icon={faGithub} size="2x" /></a>
-        <a href="https://www.linkedin.com/in/luciano-lawson/" className="social-link"><FontAwesomeIcon icon={faLinkedin} size="2x" /></a>
-        <a href="https://lucianolawson.vercel.app/" className="social-link"><FontAwesomeIcon icon={faCode} size="2x" /></a>
-      </footer>
+        <footer className="socials">
+          <a href="https://github.com/LucianoLawson/robo-ai" className="github-link"><FontAwesomeIcon icon={faGithub} size="2x" /></a>
+          <a href="https://www.linkedin.com/in/luciano-lawson/" className="linkedin-link"><FontAwesomeIcon icon={faLinkedin} size="2x" /></a>
+          <a href="https://lucianolawson.vercel.app/" className="website-link"><FontAwesomeIcon icon={faCode} size="2x" /></a>
+        </footer>
+      </div>
     </div>
   );
 }
