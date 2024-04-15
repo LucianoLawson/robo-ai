@@ -1,8 +1,8 @@
 @charset "utf-8";
-@import "./variables";
+/* @import "./variables";
 @import "./helpers/mixins";
 @import "./helpers/functions";
-@import "@chatscope/chat-ui-kit-styles/themes/default/main.scss";
+@import "@chatscope/chat-ui-kit-styles/themes/default/main.scss"; */
 
 
 body {
@@ -33,7 +33,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   z-index: 1000;
-}  */
+} */
 
 #root {
   max-width: 1280px;
@@ -46,7 +46,6 @@ body {
     display: flex;
     justify-content: center;
     gap: 30px;
-    margin-top: 15px;
   }
   
   .icon-container {
@@ -94,17 +93,9 @@ body {
   .fa-brands, .fa-solid {
     color: inherit;
   }
-.App-title {
+footer {
   text-align: center;
-  padding: 10px;
-  margin: 10px;
 }
-/* footer {
-  text-align: center;
-  padding: 10px;
-  margin: 10px;
-  transform: translateY(-100px);
-} */
 
 .scrollbar-container.cs-message-list__scroll-wrapper.ps,
 .cs-conversation-header
@@ -127,7 +118,6 @@ body {
   border-radius: 10px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-
 }
 
 .cs-message-list__typing-indicator-container {
@@ -136,6 +126,8 @@ body {
 .cs-message.cs-message--incoming, .cs-message.cs-message--outgoing {
   background-color: rgb(255, 255, 255)!important;
   overflow: hidden;
+  width: fit-content;
+  border-radius: 10px;
 }
 .cs-button.cs-button--attachment {
   visibility: hidden;
@@ -152,4 +144,17 @@ body {
 .cs-button.cs-button--attachment1 {
   cursor: pointer;
   
+}
+.robo {
+  text-align: center;
+  text-decoration: underline;
+  color:#333;
+}
+.cs-message-list {
+  background-image: url(/robot-white.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
+  background-attachment: fixed;
+  background-color: rgba(255, 255, 255, 0.5);
 }

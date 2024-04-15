@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCode, faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { faCode } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import './main.scss';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
@@ -14,7 +14,6 @@ function App() {
   const [typing, setTyping] = useState(false);
   const [messages, setMessages] = useState([{ message: "Hello, I'm Robo!", sender: "Robo", direction: "incoming" }]);
   const [isLoading, setIsLoading] = useState(false);
-  const fileInputRef = useRef(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -33,22 +32,7 @@ function App() {
     await processMessageToRobo([...messages, newMessage]);
     setTyping(false);
   };
-/*   const handleFileInputClick = () => {
-    if(fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  }; */
-  
-  const handleFileSelected = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      console.log('File selected:', file.name);
-      // Process the file upload here. Depending on your application, you might want to
-      // send it to a server or handle it in some way.
-    }
-  };
-  
-  
+
   async function processMessageToRobo(chatMessages) {
     let apiMessages = chatMessages.map(messageObject => ({
       role: messageObject.sender === "Robo" ? "assistant" : "user",
@@ -80,25 +64,11 @@ function App() {
       }]);
     });
   }
-/*   const fileInput = (
-    <>
-      <input
-        id="file-upload"
-        type="file"
-        ref={fileInputRef}
-        style={{ display: 'none' }}
-        onChange={handleFileSelected}
-      />
-      <label htmlFor="file-upload" className="cs-button cs-button--attachment">
-        <FontAwesomeIcon icon={faPaperclip} />
-        <span>Upload File</span>
-      </label>
-    </>
-  ); */
+
   return (
     <div className="App">
+      <div className='robo'><h5>Welcome to Robo Chat!</h5></div>
       <div className="chat-container">
-        <h5>Welcome to Robo Chat!</h5>
         <MainContainer>
           <ChatContainer>
             <ConversationHeader>
@@ -111,18 +81,6 @@ function App() {
             </MessageList>
             <MessageInput placeholder="Type message here" onSend={handleSend} />
           </ChatContainer>
-          {/* Label and hidden input for file upload */}
-          <label htmlFor="file-upload" className="cs-button cs-button--attachment1">
-            <FontAwesomeIcon icon={faPaperclip} />
-            <span>Upload File</span>
-          </label>
-          <input
-            id="file-upload"
-            type="file"
-            ref={fileInputRef}
-            style={{ display: 'none' }}
-            onChange={handleFileSelected}
-            />
         </MainContainer>
         {isLoading && <Animation />}
         <div className="luciano">
