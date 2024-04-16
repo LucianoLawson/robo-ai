@@ -1,26 +1,30 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faCode } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faLinkedin, faCode } from '@fortawesome/free-brands-svg-icons';
 import './main.scss';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
-import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator, Avatar, ConversationHeader } from "@chatscope/chat-ui-kit-react";
+import {
+  MainContainer,
+  ChatContainer,
+  MessageList,
+  Message,
+  MessageInput,
+  TypingIndicator,
+  Avatar,
+  ConversationHeader,
+} from "@chatscope/chat-ui-kit-react";
 import ThreeText from './loader';
-import useVantaEffect from './vantaEffect'; // Import the Vanta.js effect
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 function App() {
-  useVantaEffect();
   const [typing, setTyping] = useState(false);
   const [messages, setMessages] = useState([{ message: "Hello, I'm Robo!", sender: "Robo", direction: "incoming" }]);
-  const [isLoading, setIsLoading] = useState(true); // Set initial loading state to true
-  
-
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setIsLoading(false); // Set loading state to false after 3 seconds
+      setIsLoading(false);
     }, 3000);
   }, []);
 
@@ -33,7 +37,7 @@ function App() {
   };
 
   async function processMessageToRobo(chatMessages) {
-    let apiMessages = chatMessages.map(messageObject => ({
+    const apiMessages = chatMessages.map(messageObject => ({
       role: messageObject.sender === "Robo" ? "assistant" : "user",
       content: messageObject.message
     }));
@@ -48,27 +52,39 @@ function App() {
       messages: [systemMessage, ...apiMessages]
     };
 
-    await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(apiRequestBody)
-    }).then(response => response.json()).then(data => {
-      setMessages(prevMessages => [...prevMessages, {
+    try {
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(apiRequestBody)
+      });
+
+      if (!response.ok) {
+        throw new Error(`API responded with status code ${response.status}`);
+      }
+
+      const data = await response.json();
+      const newMessage = {
         message: data.choices[0].message.content,
         sender: "Robo",
         direction: "incoming"
-      }]);
-    });
+      };
+
+      setMessages(prevMessages => [...prevMessages, newMessage]);
+    } catch (error) {
+      console.error("Failed to fetch from OpenAI API:", error);
+      // Add additional error handling here if needed
+    }
   }
 
   return (
-<div className="App">
-  {isLoading && <div className="loading-screen"><ThreeText /></div>}
-  {!isLoading && (
-    <div className="chat-container">
+    <div className="App">
+      {isLoading && <div className="loading-screen"><ThreeText /></div>}
+      {!isLoading && (
+        <div className="chat-container">
       <MainContainer>
         <ChatContainer>
           <ConversationHeader>
