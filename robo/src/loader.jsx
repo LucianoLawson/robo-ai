@@ -35,7 +35,7 @@ const ThreeText = () => {
 
 		// Text setup
 		const loader = new FontLoader();
-		loader.load('helvetiker_regular.typeface.json', (font) => {
+		loader.load('https://github.com/mrdoob/three.js/blob/dev/examples/fonts/helvetiker_regular.typeface.json', (font) => {
 			const textGeometry = new TextGeometry('Loading Robo AI...', {
 				font: font,
 				size: 0.5,
