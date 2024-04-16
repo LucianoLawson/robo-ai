@@ -18,39 +18,40 @@ const ThreeText = () => {
 
         // Renderer setup with background color
         const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setClearColor(new THREE.Color(0xcecece)); // Black background
+        renderer.setClearColor(new THREE.Color(0x000000)); // background color
         renderer.setSize(width, height);
         mount.appendChild(renderer.domElement);
 
+        // Lighting
+        const light = new THREE.PointLight(0xffffff, 15);
+        light.position.set(2, 2, 5);
+        scene.add(light);
+
         // Cube setup
         const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-        const cubeMaterial = new THREE.MeshNormalMaterial();
+        const cubeMaterial = new THREE.MeshNormalMaterial({ wireframe: true });
         const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        cube.position.set(0, 0, 0); // Adjust position to be visible
         scene.add(cube);
 
-		// Lighting
-		const light = new THREE.PointLight(0xffffff, 1.5);
-		light.position.set(2, 2, 5);
-		scene.add(light);
-
-		// Text setup
-		const loader = new FontLoader();
-		loader.load('https://github.com/mrdoob/three.js/blob/dev/examples/fonts/helvetiker_regular.typeface.json', (font) => {
-			const textGeometry = new TextGeometry('Loading Robo AI...', {
-				font: font,
-				size: 0.5,
-				depth: 0.2,
-				curveSegments: 12,
-				bevelEnabled: true,
-				bevelThickness: 0.02,
-				bevelSize: 0.02,
-				bevelSegments: 5,
-			});
-			const textMaterial = new THREE.MeshNormalMaterial({ color: 'blue' }); // Red text with Phong material
-			const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-			textMesh.position.set(-2.75, 0.5, 2); // Adjust text position
-			scene.add(textMesh);
-		});
+        // Text setup
+        const loader = new FontLoader();
+        loader.load('helvetiker_regular.typeface.json', (font) => {
+            const textGeometry = new TextGeometry('Robo AI.', {
+                font: font,
+                size: 0.5,
+                depth: 0.1,
+                curveSegments: 12,
+                bevelEnabled: true,
+                bevelThickness: 0.06,
+                bevelSize: 0.02,
+                bevelSegments: 5,
+            });
+            const textMaterial = new THREE.MeshPhongMaterial({ color: 'skyblue' }); // text color
+            const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+            textMesh.position.set(-1.25, 1, 0); // Centered position
+            scene.add(textMesh);
+        });
 
         // Animation loop
         const animate = () => {
@@ -70,7 +71,7 @@ const ThreeText = () => {
             renderer.setSize(window.innerWidth, window.innerHeight);
         };
         window.addEventListener('resize', onWindowResize);
-
+		
         // Cleanup function
         return () => {
             mount.removeChild(renderer.domElement);

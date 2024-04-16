@@ -5,7 +5,7 @@
 @import "@chatscope/chat-ui-kit-styles/themes/default/main.scss"; */
 
 
-body {
+/* body {
   background-color: rgb(38, 38, 38);
   background-image: url(/robot-white.jpg);
   background-repeat: no-repeat;
@@ -13,7 +13,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
   margin: 0;
-}
+} */
 .cs-conversation-header1 {
   text-align: center !important;
 /*   text-decoration: underline; */
@@ -149,16 +149,16 @@ footer {
   text-decoration: underline;
   color:#333;
 }
-.cs-message-list {
+/* .cs-message-list {
   background-image: url(/robot-white.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100%;
   background-attachment: fixed;
   background-color: rgba(255, 255, 255, 0.5);
-}
+} */
 
-/* rocket loading screen */
+/* loading screen */
 .loading-screen {
   position: fixed;
   top: 0;
