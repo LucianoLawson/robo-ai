@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCode } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faCode } from '@fortawesome/free-solid-svg-icons';
 import './main.scss';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator, Avatar, ConversationHeader } from "@chatscope/chat-ui-kit-react";
-import Animation from './three';
-import './variables.scss';
+import ThreeText from './loader';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -17,18 +16,15 @@ function App() {
 
   useEffect(() => {
     setIsLoading(true);
-    // Simulate fetching data
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Simulate loading time
+    }, 2000);
   }, []);
 
   const handleSend = async (message) => {
     const newMessage = { message, sender: "user", direction: "outgoing" };
-    // Update the messages state first to include the new message
     setMessages(prevMessages => [...prevMessages, newMessage]);
     setTyping(true);
-
     await processMessageToRobo([...messages, newMessage]);
     setTyping(false);
   };
@@ -67,7 +63,14 @@ function App() {
 
   return (
     <div className="App">
-      <div className='robo'><h5>Welcome to Robo Chat!</h5></div>
+              {isLoading && (
+          <div className="loading-screen">
+            <ThreeText />
+          </div>
+        )}
+      <div className='robo'>
+      <h5></h5>
+      </div>
       <div className="chat-container">
         <MainContainer>
           <ChatContainer>
@@ -82,7 +85,6 @@ function App() {
             <MessageInput placeholder="Type message here" onSend={handleSend} />
           </ChatContainer>
         </MainContainer>
-        {isLoading && <Animation />}
         <div className="luciano">
           <h5>&copy; 2024 Made with &hearts; by Luciano Lawson</h5>
         </div>

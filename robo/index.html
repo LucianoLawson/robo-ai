@@ -8,12 +8,14 @@
   </head>
   <body>
     <div id="root"></div>
+    
     <script type="importmap">
-      {
-        "imports": {
-          "three": "https://unpkg.com/three/build/three.module.js"
-        }
-      }
+			{
+				"imports": {
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
+				}
+			}
     </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>

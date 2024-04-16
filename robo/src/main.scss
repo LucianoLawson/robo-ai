@@ -42,59 +42,58 @@ body {
   text-align: left;
 }
 
-  .socials {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-  }
-  
-  .icon-container {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Tooltip styles */
-  .icon-container::after {
-    content: attr(data-title);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    z-index: 1;
-    background-color: black;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 14px;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s, visibility 0.2s;
-  }
-  
-  .icon-container:hover::after {
-    opacity: 1;
-    visibility: visible;
-  }
+.icon-container {
+  position: relative;
+  display: inline-block;
+}
 
-  /* Color change on hover for each link */
-  .github-link:hover {
-    color: #333;
-  }
-  
-  .linkedin-link:hover {
-    color: #0077b5; 
-  }
-  
-  .website-link:hover {
-    color: #ff4500; 
-  }
-  
-  .fa-brands, .fa-solid {
-    color: inherit;
-  }
+/* Tooltip styles */
+.icon-container::after {
+  content: attr(data-title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 1;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+.icon-container:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Color change on hover for each link */
+.github-link:hover {
+  color: #333;
+}
+
+.linkedin-link:hover {
+  color: #0077b5; 
+}
+
+.website-link:hover {
+  color: #ff4500; 
+}
+
+.fa-brands, .fa-solid {
+  color: inherit;
+}
 footer {
   text-align: center;
+}
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
 }
 
 .scrollbar-container.cs-message-list__scroll-wrapper.ps,
@@ -157,4 +156,17 @@ footer {
   background-size: 100%;
   background-attachment: fixed;
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* rocket loading screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
 }

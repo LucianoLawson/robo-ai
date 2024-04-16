@@ -1,55 +1,80 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+/* import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'; */
 
 const Animation = () => {
-  const mountRef = useRef(null); // This ref will be used to attach the Three.js scene to the DOM
+  const mountRef = useRef(null);
 
   useEffect(() => {
-    const currentElement = mountRef.current; // Capture the current ref value
+    const currentElement = mountRef.current;
     const width = window.innerWidth;
     const height = window.innerHeight;
 
-    // Create a camera
+    const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(70, width / height, 0.01, 10);
     camera.position.z = 1;
 
-    // Create a scene
-    const scene = new THREE.Scene();
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(width, height);
+    currentElement.appendChild(renderer.domElement);
 
-    // Create a mesh with basic material
+    /* const fontLoader = new FontLoader();
+    let textMesh;
+
+    // Load a font
+    fontLoader.load('../helvetiker_regular.typeface.json', (font) => {
+      const textGeometry = new TextGeometry('Welcome to Robo Chat', {
+        font: font,
+        size: 0.1,
+        height: 0.05,
+        curveSegments: 12,
+        bevelEnabled: true,
+        bevelThickness: 0.01,
+        bevelSize: 0.01,
+        bevelSegments: 3,
+      });
+      const textMaterial = new THREE.MeshNormalMaterial();
+      textMesh = new THREE.Mesh(textGeometry, textMaterial);
+      textMesh.position.x = -0.5; // Adjust text position
+      textMesh.position.y = 0.2; // Adjust text position
+      scene.add(textMesh);
+    }, undefined, function (error) {
+      console.error('An error happened during the font loading.', error);
+    }); */
+
     const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
     const material = new THREE.MeshNormalMaterial();
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
 
-    // Setup the renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(width, height);
-
-    // Attach the renderer to the DOM element provided by the ref
-    currentElement.appendChild(renderer.domElement);
-
-    // Animation loop
-    const onAnimate = () => {
+/*     const onAnimate = () => {
+      if (textMesh) {
+        textMesh.rotation.x += 0.0;
+        textMesh.rotation.y += 0.0;
+      }
       mesh.rotation.x += 0.01;
       mesh.rotation.y += 0.01;
       renderer.render(scene, camera);
     };
 
-    // Set animation loop
-    renderer.setAnimationLoop(onAnimate);
+    renderer.setAnimationLoop(onAnimate); */
 
-    // Cleanup function
     return () => {
-      renderer.setAnimationLoop(null); // Stop the animation loop
-      if (currentElement) currentElement.removeChild(renderer.domElement); // Safely remove the renderer from the DOM
-      scene.remove(mesh); // Clean up the mesh from the scene
-      geometry.dispose(); // Dispose the geometry
-      material.dispose(); // Dispose the material
+      renderer.setAnimationLoop(null);
+      if (currentElement) currentElement.removeChild(renderer.domElement);
+      scene.remove(mesh);
+      geometry.dispose();
+      material.dispose();
+/*       if (textMesh) {
+        scene.remove(textMesh);
+        textMesh.geometry.dispose();
+        textMesh.material.dispose();
+      } */
     };
-  }, []); // The empty dependency array means this effect will only run once (like componentDidMount)
+  }, []);
 
-return <div ref={mountRef} />;
+  return <div ref={mountRef} />;
 };
 
 export default Animation;
