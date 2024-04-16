@@ -117,6 +117,7 @@ footer {
   border-radius: 10px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  background-color: lightgray !important;
 }
 
 .cs-message-list__typing-indicator-container {
@@ -139,6 +140,7 @@ footer {
 
 .cs-conversation-header {
   width: 100%;
+    background-color: black !important;
 }
 .cs-button.cs-button--attachment1 {
   cursor: pointer;
@@ -149,15 +151,18 @@ footer {
   text-decoration: underline;
   color:#333;
 }
-/* .cs-message-list {
-  background-image: url(/robot-white.jpg);
+.cs-message-list {
+/*   background-image: url(/robot-white.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100%;
   background-attachment: fixed;
-  background-color: rgba(255, 255, 255, 0.5);
-} */
-
+  background-color: rgba(255, 255, 255, 0.5); */
+  background-color: black !important;
+} 
+.cs-message-input, .cs-message-content {
+  background-color: black !important;
+}
 /* loading screen */
 .loading-screen {
   position: fixed;
