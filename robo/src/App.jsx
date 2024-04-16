@@ -11,6 +11,7 @@ import useVantaEffect from './vantaEffect'; // Import the Vanta.js effect
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 function App() {
+  useVantaEffect();
   const [typing, setTyping] = useState(false);
   const [messages, setMessages] = useState([{ message: "Hello, I'm Robo!", sender: "Robo", direction: "incoming" }]);
   const [isLoading, setIsLoading] = useState(true); // Set initial loading state to true
