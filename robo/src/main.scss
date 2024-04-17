@@ -1,4 +1,62 @@
 @charset "utf-8";
+// Set base styles for the chat-container
+.chat-container {
+  max-width: 100%; // Ensure it does not exceed the width of the screen
+  height: auto; // Height can be auto or based on the view height
+  transition: height 0.3s ease-in-out;
+  overflow: hidden; // Avoids overflow of the content
+}
+
+// Modify styles based on media queries for mobile screens
+@media (max-width: 600px) {
+  .chat-container {
+    width: 100vw; // Full width of the viewport
+    height: 80vh; // 80% of the viewport height or as needed
+    // Adjust other properties as needed
+  }
+
+  .cs-main-container,
+  .cs-chat-container,
+  .cs-message-list__scroll-wrapper {
+    // Ensure that all children also have responsive widths
+    width: 100%;
+    height: auto;
+  }
+
+  // Modify the chat header to fit mobile screens
+  .cs-conversation-header {
+    width: 100vw;
+    height: auto;
+  }
+
+  // Ensure buttons are large enough to be touch-friendly
+  .cs-button {
+    // Increase padding for buttons
+    padding: 12px;
+  }
+
+  // Adjust the size and padding of the input field for better visibility
+  .cs-message-input {
+    padding: 10px; // Increase padding if necessary
+    font-size: 16px; // Increase font size for better readability
+  }
+
+  // Make the typing indicator prominent and fit within the new layout
+  .cs-message-list__typing-indicator-container {
+    font-size: 14px; // Adjust font size as needed
+  }
+}
+
+// Ensure the background color for typing indicator is black
+.cs-message-list__typing-indicator-container {
+  background-color: black !important; // Use !important to override existing styles
+}
+
+// Optional: Set a minimum height for the chat container if needed
+.chat-container {
+  min-height: 300px; // Adjust to the desired minimum height
+}
+
 //flexible grid layouts
 /* .container {
   display: grid;
