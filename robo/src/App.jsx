@@ -53,24 +53,35 @@ function App() {
       model: "gpt-3.5-turbo",
       messages: [systemMessage, ...apiMessages]
     };
-
-    await fetch("https://api.openai.com/v1/chat/completions", {
+    
+    fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(apiRequestBody)
-    }).then(response => response.json()).then(data => {
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
       setMessages(prevMessages => [...prevMessages, {
         message: data.choices[0].message.content,
         sender: "Robo",
         direction: "incoming"
       }]);
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
     });
+    
   }
 
-  
+
   return (
     <div className="App">
       {isLoading && <div className="loading-screen"><ThreeText /></div>}
