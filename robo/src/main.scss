@@ -1,74 +1,6 @@
 @charset "utf-8";
-// Set base styles for the chat-container
-.chat-container {
-  max-width: 100%; // Ensure it does not exceed the width of the screen
-  height: auto; // Height can be auto or based on the view height
-  transition: height 0.3s ease-in-out;
-  overflow: hidden; // Avoids overflow of the content
-}
 
-// Modify styles based on media queries for mobile screens
-@media (max-width: 600px) {
-  .chat-container {
-    width: 100vw; // Full width of the viewport
-    height: 80vh; // 80% of the viewport height or as needed
-    // Adjust other properties as needed
-  }
-
-  .cs-main-container,
-  .cs-chat-container,
-  .cs-message-list__scroll-wrapper {
-    // Ensure that all children also have responsive widths
-    width: 100%;
-    height: auto;
-  }
-
-  // Modify the chat header to fit mobile screens
-  .cs-conversation-header {
-    width: 100vw;
-    height: auto;
-  }
-
-  // Ensure buttons are large enough to be touch-friendly
-  .cs-button {
-    // Increase padding for buttons
-    padding: 12px;
-  }
-
-  // Adjust the size and padding of the input field for better visibility
-  .cs-message-input {
-    padding: 10px; // Increase padding if necessary
-    font-size: 16px; // Increase font size for better readability
-  }
-
-  // Make the typing indicator prominent and fit within the new layout
-  .cs-message-list__typing-indicator-container {
-    font-size: 14px; // Adjust font size as needed
-  }
-}
-
-// Ensure the background color for typing indicator is black
-.cs-message-list__typing-indicator-container {
-  background-color: black !important; // Use !important to override existing styles
-}
-
-// Optional: Set a minimum height for the chat container if needed
-.chat-container {
-  min-height: 300px; // Adjust to the desired minimum height
-}
-
-//flexible grid layouts
-/* .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1rem;
-} */
-//flexible images and media
-/* img, video {
-  max-width: 100%;
-  height: auto;
-} */
-//media queries
+// Responsive styles
 @media (max-width: 600px) {
   .sidebar {
     display: none;
@@ -76,55 +8,40 @@
   .main-content {
     margin: 0;
   }
-}
-//font sizes and spacing
-@media (max-width: 600px) {
+
   body {
     font-size: 14px;
   }
   h1 {
     font-size: 24px;
   }
+
+  .button, .link {
+    padding: 15px;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .chat-container {
+    width: 100%;
+    height: auto;
+  }
+  
+  .cs-message-list__typing-indicator-container,
+  .cs-conversation-header,
+  .cs-message-list,
+  .cs-message-input,
+  .cs-message-content {
+    background-color: black;
+  }
 }
+
 .root {
   display: flex;
   max-width: 100vw;
   max-height: 100vh;
-}
-//navigation
-/* @media (max-width: 600px) {
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-  .menu {
-    display: none;
-  }
-  .menu-icon {
-    display: block;
-  }
-} */
-//touch targets
-@media (max-width: 600px) {
-  .button, .link {
-    padding: 15px;
-  }
-}
-//hide or display elements
-@media (max-width: 600px) {
-  .desktop-only {
-    display: none;
-  }
-}
-
-.cs-conversation-header1 {
-  text-align: center !important;
-
-}
-.luciano {
-  text-align: center;
 }
 
 #root {
@@ -139,7 +56,6 @@
   display: inline-block;
 }
 
-/* Tooltip styles */
 .icon-container::after {
   content: attr(data-title);
   position: absolute;
@@ -163,7 +79,6 @@
   visibility: visible;
 }
 
-/* Color change on hover for each link */
 .github-link:hover {
   color: #333;
 }
@@ -179,9 +94,11 @@
 .fa-brands, .fa-solid {
   color: inherit;
 }
+
 footer {
   text-align: center;
 }
+
 .socials {
   display: flex;
   justify-content: center;
@@ -189,32 +106,21 @@ footer {
 }
 
 .scrollbar-container.cs-message-list__scroll-wrapper.ps,
-.cs-conversation-header
-{
+.cs-conversation-header {
   bottom: 20px;
   right: 20px;
   border: 1px solid #ddd;
   border-radius: 10px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-
-}
-.cs-message-input {
-  border: 1px solid #ddd;
-  border-radius: 10px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-.cs-main-container {
-  border: 1px solid #ddd;
-  border-radius: 10px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
 }
 
+.cs-message-input,
+.cs-main-container,
 .cs-message-list__typing-indicator-container {
-  color: black !important;
+  background-color: black !important;
 }
+
 .cs-message.cs-message--incoming, .cs-message.cs-message--outgoing {
   overflow: hidden;
   width: fit-content;
@@ -224,10 +130,12 @@ footer {
 .cs-button.cs-button--attachment {
   visibility: hidden;
 }
+
 .cs-button.cs-button--send {
   color: rgb(35, 35, 248);
   filter: brightness(350%);
 }
+
 .chat-container {
   width: 700px; 
   height: 600px;
@@ -238,23 +146,25 @@ footer {
   width: 100%;
   background-color: black !important;
 }
+
 .cs-button.cs-button--attachment1 {
   cursor: pointer;
-  
 }
+
 .robo {
   text-align: center;
   text-decoration: underline;
-  color:#333;
+  color: #333;
 }
 
 .cs-message-list {
   background-color: black !important;
 } 
+
 .cs-message-input, .cs-message-content {
   background-color: black !important;
 }
-/* loading screen */
+
 .loading-screen {
   position: fixed;
   top: 0;
