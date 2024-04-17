@@ -1,10 +1,10 @@
 @charset "utf-8";
 //flexible grid layouts
-.container {
+/* .container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1rem;
-}
+} */
 //flexible images and media
 /* img, video {
   max-width: 100%;
@@ -27,6 +27,11 @@
   h1 {
     font-size: 24px;
   }
+}
+.root {
+  display: flex;
+  max-width: fit-content;
+  max-height: fit-content;
 }
 //navigation
 /* @media (max-width: 600px) {
