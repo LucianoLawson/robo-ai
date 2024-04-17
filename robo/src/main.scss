@@ -1,170 +1,152 @@
-@charset "utf-8";
-
-// Responsive styles
-@media (max-width: 600px) {
-  .sidebar {
-    display: none;
-  }
-  .main-content {
-    margin: 0;
-  }
-
-  body {
-    font-size: 14px;
-  }
-  h1 {
-    font-size: 24px;
-  }
-
-  .button, .link {
-    padding: 15px;
-  }
-
-  .desktop-only {
-    display: none;
-  }
-
-  .chat-container {
-    width: 100%;
-    height: auto;
-  }
-  
-  .cs-message-list__typing-indicator-container,
-  .cs-conversation-header,
-  .cs-message-list,
-  .cs-message-input,
-  .cs-message-content {
-    background-color: black;
-  }
+// Base styles for the entire app
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.root {
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+}
+
+// Container for the entire app
+.App {
   display: flex;
-  max-width: 100vw;
-  max-height: 100vh;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0.5rem;
-  text-align: left;
-}
-
-.icon-container {
-  position: relative;
-  display: inline-block;
-}
-
-.icon-container::after {
-  content: attr(data-title);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  z-index: 1;
-  background-color: black;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 14px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s, visibility 0.2s;
-}
-
-.icon-container:hover::after {
-  opacity: 1;
-  visibility: visible;
-}
-
-.github-link:hover {
-  color: #333;
-}
-
-.linkedin-link:hover {
-  color: #0077b5; 
-}
-
-.website-link:hover {
-  color: #ff4500; 
-}
-
-.fa-brands, .fa-solid {
-  color: inherit;
-}
-
-footer {
+// Chat container specific styles
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  width: 100%;
+  height: 90%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: transparent;
   text-align: center;
 }
 
-.socials {
+// Main container adjustments
+.cs-main-container {
   display: flex;
-  justify-content: center;
-  gap: 30px;
-}
-
-.scrollbar-container.cs-message-list__scroll-wrapper.ps,
-.cs-conversation-header {
-  bottom: 20px;
-  right: 20px;
+  flex-direction: column;
+  height: 100%;
   border: 1px solid #ddd;
-  border-radius: 10px; 
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.cs-message-input,
-.cs-main-container,
-.cs-message-list__typing-indicator-container {
   background-color: black !important;
 }
 
-.cs-message.cs-message--incoming, .cs-message.cs-message--outgoing {
-  overflow: hidden;
-  width: fit-content;
-  border-radius: 10px;
+// Conversation header
+.cs-conversation-header {
+  background-color: black !important;
+  color: white;
+  padding: 15px;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: left;
+  justify-content: left;
 }
 
+// Message list
+.cs-message-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 15px;
+  background-color: black !important;
+}
+
+// Message input area
+.cs-message-input {
+  padding: 15px;
+  background-color: black !important;
+  border-top: 1px solid #ddd;
+  text-align: left;
+}
+
+//paperclip button
 .cs-button.cs-button--attachment {
   visibility: hidden;
 }
 
-.cs-button.cs-button--send {
-  color: rgb(35, 35, 248);
-  filter: brightness(350%);
+// Typing indicator
+.cs-message-list__typing-indicator-container {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  font-style: italic;
 }
 
-.chat-container {
-  width: 700px; 
-  height: 600px;
-  transition: height 0.3s ease-in-out;
+// Footer and social links
+footer.socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  background-color: transparent;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
 }
 
-.cs-conversation-header {
-  width: 100%;
-  background-color: black !important;
+//link icons
+.fa-github, .fa-linkedin, .fa-code {
+  color: #fff;
+  margin: 0 auto;        // center each icon
 }
 
-.cs-button.cs-button--attachment1 {
-  cursor: pointer;
+// Link styles
+a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
 }
 
-.robo {
-  text-align: center;
-  text-decoration: underline;
-  color: #333;
+// Hover states for icons
+.fa-brands:hover {
+  opacity: 0.8;
 }
 
-.cs-message-list {
-  background-color: black !important;
-} 
+// Mobile responsive styles
+@media (max-width: 768px) {
+  .chat-container {
+    width: 95%;
+    height: 80%;
+  }
 
-.cs-message-input, .cs-message-content {
-  background-color: black !important;
+  .cs-main-container {
+    margin: 0 10px; // Adds margin to the sides on mobile for some space
+  }
+
+  .cs-message-list {
+    padding: 10px; // Reduced padding on mobile
+  }
+
+  .cs-message-input {
+    padding: 10px; // Consistent padding with message list
+  }
+
+  footer.socials {
+    padding: 0.5rem;
+  }
 }
 
+// Loading screen styling
 .loading-screen {
   position: fixed;
   top: 0;
@@ -174,5 +156,24 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+// Utility classes for showing/hiding content
+.hidden {
+  display: none;
+}
+
+.desktop-only {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.mobile-only {
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
 }

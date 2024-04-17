@@ -87,12 +87,12 @@ function App() {
       {isLoading && <div className="loading-screen"><ThreeText /></div>}
       {!isLoading && (
         <div className="chat-container">
-          <MainContainer>
+          <MainContainer className="cs-main-container">
             <ChatContainer>
-              <ConversationHeader>
+              <ConversationHeader className="cs-conversation-header">
                 <Avatar name="Robo" size="md" src="/robo-icon.svg" status="available" />
               </ConversationHeader>
-              <MessageList 
+              <MessageList className="cs-message-list"
                 ref={messageListRef}
                 typingIndicator={typing ? <TypingIndicator
                   content="Robo is typing"
@@ -104,7 +104,7 @@ function App() {
                   <Message key={index} model={message} />
                 ))}
               </MessageList>
-              <MessageInput placeholder="Type message here" onSend={handleSend} />
+              <MessageInput className="cs-message-input" placeholder="Type message here" onSend={handleSend} />
             </ChatContainer>
           </MainContainer>
           <div className="luciano">
