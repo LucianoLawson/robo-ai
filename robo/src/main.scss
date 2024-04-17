@@ -1,39 +1,12 @@
 @charset "utf-8";
-/* @import "./variables";
-@import "./helpers/mixins";
-@import "./helpers/functions";
-@import "@chatscope/chat-ui-kit-styles/themes/default/main.scss"; */
 
-
-/* body {
-  background-color: rgb(38, 38, 38);
-  background-image: url(/robot-white.jpg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-attachment: fixed;
-  margin: 0;
-} */
 .cs-conversation-header1 {
   text-align: center !important;
-/*   text-decoration: underline; */
+
 }
 .luciano {
   text-align: center;
 }
-
-/* .cs-chat-container {
-  width: 350px;
-  height: 300px !important;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  z-index: 1000;
-} */
 
 #root {
   max-width: 1280px;
@@ -105,6 +78,7 @@ footer {
   border-radius: 10px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+
 }
 .cs-message-input {
   border: 1px solid #ddd;
@@ -117,20 +91,23 @@ footer {
   border-radius: 10px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  background-color: lightgray !important;
 }
 
 .cs-message-list__typing-indicator-container {
-  color: black!important;
+  color: black !important;
 }
 .cs-message.cs-message--incoming, .cs-message.cs-message--outgoing {
-  background-color: rgb(255, 255, 255)!important;
   overflow: hidden;
   width: fit-content;
   border-radius: 10px;
 }
+
 .cs-button.cs-button--attachment {
   visibility: hidden;
+}
+.cs-button.cs-button--send {
+  color: rgb(35, 35, 248);
+  filter: brightness(350%);
 }
 .chat-container {
   width: 700px; 
@@ -140,7 +117,7 @@ footer {
 
 .cs-conversation-header {
   width: 100%;
-    background-color: black !important;
+  background-color: black !important;
 }
 .cs-button.cs-button--attachment1 {
   cursor: pointer;
@@ -151,16 +128,8 @@ footer {
   text-decoration: underline;
   color:#333;
 }
-.cs-message-list__typing-indicator-container {
-  background-color: black !important;
-}
+
 .cs-message-list {
-/*   background-image: url(/robot-white.jpg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100%;
-  background-attachment: fixed;
-  background-color: rgba(255, 255, 255, 0.5); */
   background-color: black !important;
 } 
 .cs-message-input, .cs-message-content {
