@@ -1,4 +1,60 @@
 @charset "utf-8";
+//flexible grid layouts
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+//flexible images and media
+/* img, video {
+  max-width: 100%;
+  height: auto;
+} */
+//media queries
+@media (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+  .main-content {
+    margin: 0;
+  }
+}
+//font sizes and spacing
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+  h1 {
+    font-size: 24px;
+  }
+}
+//navigation
+/* @media (max-width: 600px) {
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .menu {
+    display: none;
+  }
+  .menu-icon {
+    display: block;
+  }
+} */
+//touch targets
+@media (max-width: 600px) {
+  .button, .link {
+    padding: 15px;
+  }
+}
+//hide or display elements
+@media (max-width: 600px) {
+  .desktop-only {
+    display: none;
+  }
+}
 
 .cs-conversation-header1 {
   text-align: center !important;
