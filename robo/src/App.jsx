@@ -39,47 +39,48 @@ function App() {
   };
 
   async function processMessageToRobo(chatMessages) {
+    console.log("Using API key:", API_KEY); // Debugging line to check the API key
+
     let apiMessages = chatMessages.map(messageObject => ({
-      role: messageObject.sender === "Robo" ? "assistant" : "user",
-      content: messageObject.message
+        role: messageObject.sender === "Robo" ? "assistant" : "user",
+        content: messageObject.message
     }));
 
     const systemMessage = {
-      role: "system",
-      content: "Explain all concepts like I'm a mid-level developer."
+        role: "system",
+        content: "Explain all concepts like I'm a mid-level developer."
     };
 
     const apiRequestBody = {
-      model: "gpt-3.5-turbo",
-      messages: [systemMessage, ...apiMessages]
+        model: "gpt-3.5-turbo",
+        messages: [systemMessage, ...apiMessages]
     };
-    
-    fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(apiRequestBody)
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      setMessages(prevMessages => [...prevMessages, {
-        message: data.choices[0].message.content,
-        sender: "Robo",
-        direction: "incoming"
-      }]);
-    })
-    .catch(error => {
-      console.error('There was a problem with the fetch operation:', error);
-    });
-    
-  }
+
+    try {
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${API_KEY}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(apiRequestBody)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setMessages(prevMessages => [...prevMessages, {
+            message: data.choices[0].message.content,
+            sender: "Robo",
+            direction: "incoming"
+        }]);
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error.message);
+    }
+}
+
 
 
   return (
