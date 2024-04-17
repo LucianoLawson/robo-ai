@@ -39,7 +39,6 @@ function App() {
   };
 
   async function processMessageToRobo(chatMessages) {
-    console.log("Using API key:", API_KEY); // Debugging line to check the API key
 
     let apiMessages = chatMessages.map(messageObject => ({
         role: messageObject.sender === "Robo" ? "assistant" : "user",
