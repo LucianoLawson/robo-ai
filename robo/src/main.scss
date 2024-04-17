@@ -118,8 +118,9 @@ a {
 }
 
 // Hover states for icons
-.fa-brands:hover {
+.fa-github:hover, .fa-linkedin:hover, .fa-code:hover {
   opacity: 0.8;
+  color: #7067ff;
 }
 
 // Mobile responsive styles
