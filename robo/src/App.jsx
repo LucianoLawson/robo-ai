@@ -47,7 +47,7 @@ function App() {
 
     const systemMessage = {
         role: "system",
-        content: "Explain all concepts like a drag queen."
+        content: "Explain all concepts like I'm a mid-level developer."
     };
 
     const apiRequestBody = {
